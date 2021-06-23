@@ -1,0 +1,35 @@
+.footer-chat{
+  position:absolute;
+   width: 100%;
+   background-color: #ededed;
+   height:65px;
+   display: flex;
+   align-items:center;
+   bottom:0;
+   z-index: 99;
+}
+.footer-content{
+   position:absolute;
+   display: flex;
+   align-items:center;
+   width: 100%;
+   gap:25px;
+   justify-content:flex-start;
+}
+.footer-content button{
+   width: 48px;
+   height:48px;
+   background-color: transparent;
+   border: 0;
+   outline: 0;
+   cursor: pointer;
+}
+.footer-content input{
+   width: 85%;
+   height:35px;
+   border-radius: 65px;
+   border: 0;
+   outline: 0;
+   padding-left: 10px;
+   transition:all 1s ease-in-out;
+}

@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
+.app-home{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #f6f6f6;
+  display:grid;
+  grid-template-columns: 2fr 6fr;
+  grid-template-rows: 1fr 13fr;
+  grid-template-areas: "sidebar header"
+                        "sidebar body";
+                        overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (prefers-color-scheme: dark) {
+  .App{
+    background-color:#262626;
+  }
+  .account-header{
+    background-color:#2a2f32 !important;
+    color: #d4d5d7 !important;
+  }
+  .account-header svg{
+    color: #d4d5d7 !important;
+  }
+  .group-list{
+    background-color: #323739 !important;
+    color: #f1f1f2;
+  }
+  .group-list:hover{
+    opacity: 80%;
+  }
+  .chat-searchbar{
+    background-color: #131c21 !important;
+  }
+  .chat-search-main{
+    background-color: #323739 !important
+  }
+  .chat-search-main svg{
+    color: #d4d5d7 !important
+  }
+  .header{
+    background-color:#2a2f32 !important;
+    border: 0 !important;
+    color: #d4d5d7;
+  }
+  .header svg{
+    color: #d4d5d7;
+  }
+  .sidebar{
+    border: 0 !important;
+  }
+  .chat-body{
+    background-image: url(https://web.whatsapp.com/img/bg-chat-tile-dark_a4be512e7195b6b733d9110b408f075d.png) !important;
+    background-color:#0d1418 !important;
+  }
+  .footer-chat{
+background-color:#1e2428 !important; 
+  }
+  .footer-chat svg{
+    fill: #d4d5d7;
+    color: #d4d5d7;
+  }
+  .profileBar{
+    background-color: #323739 !important;
+  }
+  .profile--name--form,.profile--about--form{
+    background-color: #323739 !important;
+    color: #e1e1e3;
+  }
+  .popover-options{
+    background-color: #323739 !important;
+    color: #e1e1e3;
+  }
+  .form-field input{
+    color: #d4d5d7 !important;
+  }
+  .photo-view{
+background-color: #131c21 !important;
+opacity: 96.5% !important;
+  }
+  .camera-modal-footer{
+    background-color: #131c21 !important;
+    
+  }
+  .emoji-list{
+    background-color: #131c21 !important;
+  }
+  .emoji--search{
+    background-color: #262d31 !important
+  }
+  .footer-content input{
+background-color:#33383b !important
+  }
+  .user-chat{
+    background-color: #262d31 !important;
+    color: #f1f1f2;
+    opacity: 95% !important;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* @media (prefers-color-scheme: light) {
+  .App{
+    background-color:red;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
+} */
+
+

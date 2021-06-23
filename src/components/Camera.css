@@ -1,0 +1,112 @@
+.camera-popup{
+   width: 100%;
+   height: 100vh;
+   position: fixed;
+   background-color:#ecececf5;
+   z-index: 999;
+   display: flex;
+   align-items:center;
+   justify-content:center;
+   opacity: 0;
+   display: none;
+}
+.camera-enable{
+   opacity: 1;
+   display:flex;
+}
+
+.camera-modal{
+   width: 500px;
+   height:500px;
+   background-color:#fff;
+   
+   animation:scaleIn .3s 1 ease-in;
+}
+.camera-modal-close{
+   animation:scaleOut .3s 1 ease-in;
+}
+
+@keyframes scaleOut {
+   0%{
+      transform:scale(1);
+   }
+   50%{
+      transform:scale(.8);
+   }
+   100%{
+      transform:scale(.4);
+   }
+}
+
+@keyframes scaleIn {
+   0%{
+      transform:scale(.1);
+   }
+   50%{
+      transform:scale(.8);
+   }
+   100%{
+      transform:scale(1);
+   }
+}
+
+
+.camera-modal-header{
+   padding: 0 20px 0 25px;
+   background-color:#00bfa5;
+   height:49px;
+   display: flex;
+   align-items:center;
+   gap:15px;
+   color: #fff;
+}
+.camera-modal-header span{
+   font-size: 18px;
+   font-weight: 500;
+}
+.camera-modal-header button{
+   width: 35px;
+   height: 35px;
+   background-color: transparent;
+   border: 0;
+   outline:0;
+   cursor: pointer;
+}
+.camera-modal-header button svg{
+   width: 24px;
+   height:24px;
+   color: #fff;
+}
+.camera-container{
+   height:361px;
+   width: 100%;
+   background-color:#ccc;
+}
+.camera-container video{
+   width:100%;
+   height:100%;
+   object-fit: cover;
+   transform: rotateY(180deg);
+   -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+   -moz-transform:rotateY(180deg);
+}
+.camera-modal-footer{
+   height:90px;
+   background-color:#ccc;
+   position: relative;
+}
+.capture-btn{
+   width: 55px;
+   height:55px;
+   position:absolute;
+   left: 50%;
+   top:-5px;
+   transform: translate(-50%,-50%);
+   background-color:#00bfa5;
+   border: 0;
+   outline: 0;
+   border-radius: 50%;
+   color: #fff;
+   font-size: 18px;
+   cursor: pointer;
+}
