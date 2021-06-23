@@ -28,7 +28,7 @@
     color: #f1f1f2;
   }
   .group-list:hover{
-    opacity: 80%;
+    background-color: #3237398f !important;
   }
   .chat-searchbar{
     background-color: #131c21 !important;
