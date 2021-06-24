@@ -11,6 +11,60 @@
                         overflow: hidden;
 }
 
+.auth-screen{
+  width: 100%;
+  height:100vh;
+  background-color: #fafafa;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+.auth-box{
+  width: 350px;
+  height: 350px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.auth-box img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  
+}
+.auth-button{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.auth-button button{
+  width: 90%;
+  margin:10px auto;
+  height:45px;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  gap:10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.auth-button button:nth-child(1){
+  background-color:#fff;
+  border: 0;
+  outline:0;
+  color: #444444;
+  box-shadow: 0px 0px 10px 0 rgba(0,0,0,0.115);
+ }
+.auth-button button:nth-child(2){
+ background-color:#262626;
+ border: 0;
+ outline:0;
+ color: #d4d5d7;
+ box-shadow: 1px 0px 30px 10px rgba(126, 126, 126, 0.115);
+}
 
 @media (prefers-color-scheme: dark) {
   .App{

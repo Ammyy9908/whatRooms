@@ -1,13 +1,11 @@
 const intialState = {
-   user:{
-      name:"Sumit",
-      about:"Full Stack Web Developer",
-      avatar:"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb"
-   },
+   user:null,
   isProfileBar:false,
   isEmojiList:false,
   isPhotoView:false,
   isCamera:false,
+  isCaptured:false,
+  dropDown:false
 }
 
 const UiReducer = (state=intialState,action)=>{
@@ -18,6 +16,29 @@ const UiReducer = (state=intialState,action)=>{
          return {
             ...state,
             user:action.user
+         }
+      }
+      case "SET_DROPDOWN":{
+         return{
+            ...state,
+            dropDown:action.dropDown
+         }
+      }
+      case "SET_CAPTURE":{
+         return{
+            ...state,
+            isCaptured:action.isCapture
+         }
+      }
+
+      case "REMOVE_PHOTO":{
+         if(state.user)
+         
+         {state.user.avatar = null;
+         }
+         return{
+            ...state,
+            
          }
       }
       case "SET_PHOTO_VIEW":{

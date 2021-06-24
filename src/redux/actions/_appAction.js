@@ -3,10 +3,29 @@ export const setProfilebar = (isProfileBar)=>({
    isProfileBar
 })
 
+export const setUser = (user)=>({
+   type:"SET_USER",
+   user
+})
+
 
 export const setEmojiList = (isEmojiList)=>({
    type:"SET_EMOJILIST",
    isEmojiList
+})
+
+export const setDropdown = (dropDown)=>({
+   type:"SET_DROPDOWN",
+   dropDown
+})
+
+export const setCapture = (isCapture)=>({
+   type:"SET_CAPTURE",
+   isCapture
+})
+
+export const removePhoto = ()=>({
+   type:"REMOVE_PHOTO"
 })
 
 export const setPhotoView = (isPhotoView)=>({
