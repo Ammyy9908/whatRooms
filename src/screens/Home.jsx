@@ -16,11 +16,8 @@ import NewGroupBar from '../components/NewGroupBar'
 
 function Home(props) {
 const history = useHistory()
-//listen room connect
-socket.on("connect-room",(groups)=>{
-   console.log("Updated groups",groups);
-   props.setGroup(groups);
-})
+
+
    React.useEffect(()=>{
 const fetchUser = async ()=>{
    try{
