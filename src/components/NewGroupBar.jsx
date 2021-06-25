@@ -20,7 +20,7 @@ function NewGroupBar(props) {
 
    const handleNewGroup = async ()=>{
       try{
-         const r = await axios.post(`https://what-rooms.vercel.app/group/add`,{name:subject,admin:props.user && props.user,imageUrl:null});
+         const r = await axios.post(`https://whatrooms.herokuapp.com/group/add`,{name:subject,admin:props.user && props.user,imageUrl:null});
          console.log(r.data);
          if(r.data.error){
             return console.log(r.data.message);
