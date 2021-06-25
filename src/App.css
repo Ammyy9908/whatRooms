@@ -118,6 +118,13 @@ background-color:#1e2428 !important;
   .profileBar{
     background-color: #323739 !important;
   }
+  .new-group-bar{
+    background-color: #323739 !important;
+    border: 0 !important;
+  }
+  .group-lists{
+    background-color: #4d4d4d !important;
+  }
   .profile--name--form,.profile--about--form{
     background-color: #323739 !important;
     color: #e1e1e3;
@@ -131,7 +138,7 @@ background-color:#1e2428 !important;
   }
   .photo-view{
 background-color: #131c21 !important;
-opacity: 96.5% !important;
+
   }
   .camera-modal-footer{
     background-color: #131c21 !important;
@@ -150,6 +157,17 @@ background-color:#33383b !important
     background-color: #262d31 !important;
     color: #f1f1f2;
     opacity: 95% !important;
+  }
+  .topDropDown{
+    background-color: #262d31 !important;
+    
+  }
+  .topDropDown button{
+    color: #f1f1f2 !important;
+  }
+  .topDropDown button:hover{
+    color: #f1f1f2 !important;
+    background-color: #141516 !important;
   }
 }
 

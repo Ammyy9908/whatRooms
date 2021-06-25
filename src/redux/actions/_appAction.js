@@ -19,6 +19,16 @@ export const setDropdown = (dropDown)=>({
    dropDown
 })
 
+export const setEmoji = (isEmoji) =>({
+   type:"SET_EMOJI",
+   isEmoji
+})
+
+export const setNewGroups = (newGroup)=>({
+   type:"SET_NEW_GROUP",
+   newGroup
+})
+
 export const setCapture = (isCapture)=>({
    type:"SET_CAPTURE",
    isCapture
@@ -37,3 +47,36 @@ export const setCameraView = (isCamera)=>({
    type:"SET_CAMERA",
    isCamera
 })
+
+export const setGroup = (groups)=>{
+   return {
+      type:"SET_GROUPS",
+      groups
+   }
+}
+
+export const addGroup = (group)=>({
+   type:"ADD_GROUP",
+   group
+})
+export const setActiveGroup = (activeGroup)=>{
+   return {
+      type:"SET_ACTIVE_GROUP",
+      activeGroup
+   }
+}
+
+export const setActiveChat = (activeGroupChat)=>{
+   return{
+      type:"SET_ACTIVE_GROUP_CHAT",
+      activeGroupChat
+   }
+}
+export const setActiveChats = (activeGroupChats)=>{
+   return{
+      type:"SET_ACTIVE_GROUP_CHATS",
+      activeGroupChats
+   }
+}
+
+//SET_ACTIVE_GROUP_CHATS

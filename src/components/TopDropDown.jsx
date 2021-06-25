@@ -2,7 +2,7 @@ import React from 'react'
 import "./TopDropDown.css"
 import Cookies from "js-cookie";
 import { useHistory } from 'react-router-dom';
-import { setDropdown } from '../redux/actions/_appAction';
+import { setDropdown, setNewGroups, setProfilebar } from '../redux/actions/_appAction';
 import { connect } from 'react-redux';
 
 
@@ -18,10 +18,19 @@ function TopDropDown(props) {
       history.push('/auth');
       
    }
+
+   const handleNewGroup = ()=>{
+      props.setDropdown(false);
+      props.setNewGroups(true)
+   }
+   const handleProfile = ()=>{
+      props.setDropdown(false);
+      props.setProfilebar(true)
+   }
    return (
       <div className={`topDropDown ${props.isDropdown && "drop-enable"}`}>
-         <button>New Group</button>
-         <button>Profile</button>
+         <button onClick={handleNewGroup}>New Group</button>
+         <button onClick={handleProfile}>Profile</button>
          <button>Settings</button>
          <button onClick={handleLogout}>Log out</button>
       </div>
@@ -34,6 +43,8 @@ const mapStateToProps = (state)=>({
 })
 
 const mapDispatchToProps =(dispatch)=>({
-   setDropdown:isDropdown=>dispatch(setDropdown(isDropdown))
+   setDropdown:isDropdown=>dispatch(setDropdown(isDropdown)),
+   setNewGroups:newGroup=>dispatch(setNewGroups(newGroup)),
+   setProfilebar:isProfileBar=>dispatch(setProfilebar(isProfileBar)),
 })
 export default connect(mapStateToProps,mapDispatchToProps)(TopDropDown)

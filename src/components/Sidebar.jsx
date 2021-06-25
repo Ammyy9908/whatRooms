@@ -2,8 +2,10 @@ import React from 'react'
 import "./Sidebar.css";
 import {FiSearch,FiEdit,FiChevronDown} from "react-icons/fi"
 import { connect } from 'react-redux';
-import { setDropdown, setProfilebar } from '../redux/actions/_appAction';
+import { setActiveChats, setActiveGroup, setDropdown, setProfilebar } from '../redux/actions/_appAction';
 import TopDropDown from './TopDropDown';
+import {SocketContext, socket} from '../context/context';
+import axios from 'axios';
 
 // function StatusIcon(){
 //    return <svg id="df9d3429-f0ef-48b5-b5eb-f9d27b2deba6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12.072 1.761a10.05 10.05 0 0 0-9.303 5.65.977.977 0 0 0 1.756.855 8.098 8.098 0 0 1 7.496-4.553.977.977 0 1 0 .051-1.952zM1.926 13.64a10.052 10.052 0 0 0 7.461 7.925.977.977 0 0 0 .471-1.895 8.097 8.097 0 0 1-6.012-6.386.977.977 0 0 0-1.92.356zm13.729 7.454a10.053 10.053 0 0 0 6.201-8.946.976.976 0 1 0-1.951-.081v.014a8.097 8.097 0 0 1-4.997 7.209.977.977 0 0 0 .727 1.813l.02-.009z"></path><path fill="#009588" d="M19 1.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"></path></svg>
@@ -18,16 +20,64 @@ const UserIcon = ()=>{
 }
 
 
-function GroupList(){
-   return <div className="group-list">
+
+
+function GroupList({name,data,setActive,user,setActiveGroup,setActiveChats}){
+      const [options,setOptions] = React.useState(false);
+   const handleChangeGroup = (e)=>{
+      console.log(e.target);
+
+      if(data.peoples.findIndex((people)=>people.email===user.email)>-1){
+         setActive(data)
+         handleSwitchRoom();
+         // setActiveChats(data.chats)
+         socket.on("chats",(chats)=>{
+            console.log("This group chats",chats);
+            setActiveChats(chats)
+         })
+      }
+   }
+
+
+   const handleJoin = async ()=>{
+      const {_id} = data;
+         try{
+            const r = await axios.put(`https://whatrooms.herokuapp.com/group/join`,{roomid:_id,user:user});
+            console.log(r.data);
+            const {group} = r.data;
+            setActiveGroup(group);
+
+
+         }
+         catch(e){
+            console.log(e);
+         }
+         
+   }
+
+
+   const handleSwitchRoom = ()=>{
+      const {name,_id} = data;
+      socket.emit("join",{user:user,name:name,id:_id});
+   }
+   return   <SocketContext.Provider value={socket}><div className="group-list" onClick={handleChangeGroup}>
       <div className="group-avatar">
          <UserIcon/>
       </div>
       <div className="group-info">
-         <span>Group Name</span>
+         <span>{name}</span>
          <span className="last-chat">last chat comes here</span>
       </div>
+
+      <button className="chat-more" onClick={()=>setOptions(!options)}>
+         <FiChevronDown className="arrow-down"/>
+         <div className={`chat-more-options ${options && "chat-more-options_enable"}`}>
+            <span onClick={handleJoin}>Join Group</span>
+            <span>Leave Group</span>
+         </div>
+         </button>
    </div>
+   </SocketContext.Provider>
 }
 
 
@@ -62,27 +112,12 @@ function Sidebar(props) {
          </div>
 
          <div className="group-lists">
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
-            <GroupList/>
+            
+            {
+               props.groups && props.groups.map((group,i)=>{
+                  return <GroupList key={i} name={group.name} data={group} setActive={props.setActiveGroup} user={props.user} setActiveGroup={props.setActiveGroup} setActiveChats={props.setActiveChats}/>
+               })
+            }
          </div>
       </div>
    )
@@ -90,10 +125,13 @@ function Sidebar(props) {
 
 const mapStateToProps = (state)=>({
    user:state.UiReducer.user,
-   isDropdown:state.UiReducer.dropDown
+   isDropdown:state.UiReducer.dropDown,
+   groups:state.UiReducer.groups
 })
 const mapDispatchToProps =(dispatch)=>({
    setProfilebar:isProfileBar=>dispatch(setProfilebar(isProfileBar)),
-   setDropdown:isDropdown=>dispatch(setDropdown(isDropdown))
+   setDropdown:isDropdown=>dispatch(setDropdown(isDropdown)),
+   setActiveGroup:activeGroup=>dispatch(setActiveGroup(activeGroup)),
+   setActiveChats:activeGroupChats=>dispatch(setActiveChats(activeGroupChats))
 })
 export default connect(mapStateToProps,mapDispatchToProps)(Sidebar)

@@ -5,7 +5,12 @@ const intialState = {
   isPhotoView:false,
   isCamera:false,
   isCaptured:false,
-  dropDown:false
+  dropDown:false,
+  isEmoji:false,
+  newGroup:false,
+  groups:[],
+  activeGroup:false,
+  activeGroupChats:[]
 }
 
 const UiReducer = (state=intialState,action)=>{
@@ -16,6 +21,53 @@ const UiReducer = (state=intialState,action)=>{
          return {
             ...state,
             user:action.user
+         }
+      }
+
+      case "SET_ACTIVE_GROUP_CHAT":{
+         return{
+            ...state,
+            activeGroupChats:[...state.activeGroupChats,action.activeGroupChat]
+         }
+      }
+
+      case "SET_ACTIVE_GROUP_CHATS":{
+         return{
+            ...state,
+            activeGroupChats:action.activeGroupChats
+         }
+      }
+
+
+      case "SET_ACTIVE_GROUP":{
+         return{
+            ...state,
+            activeGroup:action.activeGroup
+         }
+      }
+
+      case "SET_GROUPS":{
+         return{
+            ...state,
+            groups:action.groups
+         }
+      }
+      case "ADD_GROUP":{
+         return{
+            ...state,
+            groups:[...state.groups,action.group]
+         }
+      }
+      case "SET_NEW_GROUP":{
+         return {
+            ...state,
+            newGroup:action.newGroup
+         }
+      }
+      case "SET_EMOJI":{
+         return {
+            ...state,
+            isEmoji:action.isEmoji
          }
       }
       case "SET_DROPDOWN":{

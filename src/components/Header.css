@@ -13,6 +13,14 @@
    align-items:center;
    gap:35px;
 }
+.group--info{
+   display: flex;
+   flex-direction: column;
+}
+.group--info span:nth-child(2){
+   font-size: 11px;
+   color: #999999;
+}
 .current-group-avatar{
    width: 45px;
    height: 45px;

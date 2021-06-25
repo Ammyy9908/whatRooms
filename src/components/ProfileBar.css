@@ -195,9 +195,11 @@ cursor: pointer;
 .text-field{
    display: flex;
    flex-direction: column;
-   margin-left: 15px;
-   height:75%;
-   width:100%;
+  
+   height:65%;
+   width:96%;
+   margin:0 auto;
+   align-items: flex-start;
 }
 .text-field label{
    color: #009688;
@@ -206,10 +208,11 @@ cursor: pointer;
    font-size: 14px;
 }
 .form-field{
-   width: 100%;
+   width: 96%;
    height:35px;
    display:flex;
    align-items:center;
+   margin: 0 auto;
    
 }
 .form-field input{

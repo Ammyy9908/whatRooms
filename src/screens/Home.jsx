@@ -9,11 +9,18 @@ import {SocketContext, socket} from '../context/context';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { connect } from 'react-redux'
-import { setUser } from '../redux/actions/_appAction'
+import { setGroup, setUser } from '../redux/actions/_appAction'
 import { useHistory } from 'react-router-dom'
+import NewGroupBar from '../components/NewGroupBar'
+
 
 function Home(props) {
 const history = useHistory()
+//listen room connect
+socket.on("connect-room",(groups)=>{
+   console.log("Updated groups",groups);
+   props.setGroup(groups);
+})
    React.useEffect(()=>{
 const fetchUser = async ()=>{
    try{
@@ -26,22 +33,55 @@ const fetchUser = async ()=>{
 
        const {user} = r.data;
 
-       props.setUser(user);
+  
+
+      return user;
    }
    catch(e){
-      console.log(e);
+      return e;
    }
 
    
 }
+
+const fetchGroups = async ()=>{
+   try{
+      const r = await axios.get(`http://localhost:5000/group/fetch`);
+
+       const {groups} = r.data;
+
+  
+
+      return groups;
+   }
+   catch(e){
+      return e;
+   }
+}
+
+fetchUser().then((user) => {
+      props.setUser(user);
+}).then(()=>{
+   fetchGroups().then((groups) => {
+      props.setGroup(groups);
+   })
+})
 Cookies.get("GOOGLE_AUTH_TOKEN")?fetchUser():history.push('/auth');
+
+
+
    },
+
+
+
+   
    // eslint-disable-next-line
    [])
    return (
       <SocketContext.Provider value={socket}>
       <div className="app-home">
          <ProfileBar/>
+         <NewGroupBar/>
          <Sidebar/>
          <Header/>
          <Body/>
@@ -54,11 +94,12 @@ Cookies.get("GOOGLE_AUTH_TOKEN")?fetchUser():history.push('/auth');
 
 
 // const mapStateToProps = (state)=>({
-
+//    groups:state.UiReducer.groups
 // })
 
 const mapDispatchToProps = (dispatch)=>({
-   setUser:user=>dispatch(setUser(user))
+   setUser:user=>dispatch(setUser(user)),
+   setGroup:groups=>dispatch(setGroup(groups))
 })
 
 export default connect(null,mapDispatchToProps)(Home)

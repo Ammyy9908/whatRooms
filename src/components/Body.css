@@ -7,7 +7,7 @@
 }
 .chat-body-main{
    width: 98%;
-   height: 90%;
+   height: 92%;
    overflow-y: scroll;
    position: absolute;
    display:flex;
@@ -29,6 +29,7 @@
    gap:5px;
    padding:.5rem;
    width: 150px;
+   margin-top: 10px;
    
    
 }
