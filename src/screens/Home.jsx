@@ -43,7 +43,7 @@ const fetchUser = async ()=>{
 
 const fetchGroups = async ()=>{
    try{
-      const r = await axios.get(`http://localhost:5000/group/fetch`);
+      const r = await axios.get(`https://whatrooms.herokuapp.com/group/fetch`);
 
        const {groups} = r.data;
 
