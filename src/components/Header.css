@@ -16,10 +16,16 @@
 .group--info{
    display: flex;
    flex-direction: column;
+   gap:2px;
 }
 .group--info span:nth-child(2){
    font-size: 11px;
    color: #999999;
+}
+.typing__status{
+   font-size: 9px;
+   color: #25D366 !important;
+   
 }
 .current-group-avatar{
    width: 45px;

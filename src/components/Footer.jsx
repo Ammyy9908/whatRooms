@@ -16,14 +16,25 @@ function Footer(props) {
    const socket = useContext(SocketContext);
 
    const handleSubmit = (e)=>{
+
+
       
       if(e.key === 'Enter' || e.keyCode === 13){
          console.log({username:props.user.name,message:props.message,timestamp:new Date().getTime()});
          props.setActiveChat({useremail:props.user.email,username:props.user.name,message:props.message,timestamp:new Date().getTime()})
          socket.emit("send-message",{room:props.activeGroup,message:{useremail:props.user.email,username:props.user.name,message:props.message,timestamp:new Date().getTime()}});
+         socket.emit("stop-typing",{roomid:props.activeGroup._id});
          props.setMessage('');
       }
    }
+
+
+   const handleTyping = ()=>{
+      socket.emit("typing",{name:props.user.name,roomid:props.activeGroup._id})
+   }
+
+
+
    return (
       <div className="footer-chat">
          <div className="footer-content">
@@ -33,7 +44,7 @@ function Footer(props) {
             <button onClick={()=>props.setEmojiList(!props.isEmojiList)}>
             <span><SmileyIcon fill={props.isEmojiList && "#009688"}/></span>
             </button>
-            <input type="text" name="message" id="message-input" placeholder="Type a message" value={props.message} onChange={(e)=>props.setMessage(e.target.value)} onKeyUp={handleSubmit}/>
+            <input type="text" name="message" id="message-input" placeholder="Type a message" value={props.message} onChange={(e)=>props.setMessage(e.target.value)} onKeyUp={handleSubmit} onInput={handleTyping}/>
             <button>
                <span><MicIcon/></span>
             </button>

@@ -22,8 +22,10 @@ const UserIcon = ()=>{
 
 
 
-function GroupList({name,data,setActive,user,setActiveGroup,setActiveChats}){
+function GroupList({name,data,setActive,user,setActiveGroup,setActiveChats,activeGroupChats}){
       const [options,setOptions] = React.useState(false);
+
+      
    const handleChangeGroup = (e)=>{
       console.log(e.target);
 
@@ -66,7 +68,7 @@ function GroupList({name,data,setActive,user,setActiveGroup,setActiveChats}){
       </div>
       <div className="group-info">
          <span>{name}</span>
-         <span className="last-chat">last chat comes here</span>
+         <span className="last-chat">{data.chats.length>0 && data.chats[data.chats.length-1].message}</span>
       </div>
 
       <button className="chat-more" onClick={()=>setOptions(!options)}>
@@ -115,7 +117,7 @@ function Sidebar(props) {
             
             {
                props.groups && props.groups.map((group,i)=>{
-                  return <GroupList key={i} name={group.name} data={group} setActive={props.setActiveGroup} user={props.user} setActiveGroup={props.setActiveGroup} setActiveChats={props.setActiveChats}/>
+                  return <GroupList key={i} name={group.name} data={group} setActive={props.setActiveGroup} user={props.user} setActiveGroup={props.setActiveGroup} setActiveChats={props.setActiveChats} activeGroupChats={props.activeGroupChats}/>
                })
             }
          </div>
@@ -126,7 +128,8 @@ function Sidebar(props) {
 const mapStateToProps = (state)=>({
    user:state.UiReducer.user,
    isDropdown:state.UiReducer.dropDown,
-   groups:state.UiReducer.groups
+   groups:state.UiReducer.groups,
+   activeGroupChats:state.UiReducer.activeGroupChats
 })
 const mapDispatchToProps =(dispatch)=>({
    setProfilebar:isProfileBar=>dispatch(setProfilebar(isProfileBar)),

@@ -23,6 +23,7 @@ function Body(props) {
    const [message,setMessage] = React.useState('');
 
    React.useEffect(()=>{
+      console.log("Running effect");
       //listen message changes
    socket.on("chat-message",(message)=>{
       console.log("Running message listener!");
